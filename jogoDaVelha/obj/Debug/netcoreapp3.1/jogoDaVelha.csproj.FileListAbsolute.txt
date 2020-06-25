@@ -1,0 +1,13 @@
+C:\Users\Matheus\Documents\ADS\FP\aps_fp\jogoDaVelha\bin\Debug\netcoreapp3.1\jogoDaVelha.exe
+C:\Users\Matheus\Documents\ADS\FP\aps_fp\jogoDaVelha\bin\Debug\netcoreapp3.1\jogoDaVelha.deps.json
+C:\Users\Matheus\Documents\ADS\FP\aps_fp\jogoDaVelha\bin\Debug\netcoreapp3.1\jogoDaVelha.runtimeconfig.json
+C:\Users\Matheus\Documents\ADS\FP\aps_fp\jogoDaVelha\bin\Debug\netcoreapp3.1\jogoDaVelha.runtimeconfig.dev.json
+C:\Users\Matheus\Documents\ADS\FP\aps_fp\jogoDaVelha\bin\Debug\netcoreapp3.1\jogoDaVelha.dll
+C:\Users\Matheus\Documents\ADS\FP\aps_fp\jogoDaVelha\bin\Debug\netcoreapp3.1\jogoDaVelha.pdb
+C:\Users\Matheus\Documents\ADS\FP\aps_fp\jogoDaVelha\obj\Debug\netcoreapp3.1\jogoDaVelha.csprojAssemblyReference.cache
+C:\Users\Matheus\Documents\ADS\FP\aps_fp\jogoDaVelha\obj\Debug\netcoreapp3.1\jogoDaVelha.csproj.CoreCompileInputs.cache
+C:\Users\Matheus\Documents\ADS\FP\aps_fp\jogoDaVelha\obj\Debug\netcoreapp3.1\jogoDaVelha.AssemblyInfoInputs.cache
+C:\Users\Matheus\Documents\ADS\FP\aps_fp\jogoDaVelha\obj\Debug\netcoreapp3.1\jogoDaVelha.AssemblyInfo.cs
+C:\Users\Matheus\Documents\ADS\FP\aps_fp\jogoDaVelha\obj\Debug\netcoreapp3.1\jogoDaVelha.dll
+C:\Users\Matheus\Documents\ADS\FP\aps_fp\jogoDaVelha\obj\Debug\netcoreapp3.1\jogoDaVelha.pdb
+C:\Users\Matheus\Documents\ADS\FP\aps_fp\jogoDaVelha\obj\Debug\netcoreapp3.1\jogoDaVelha.genruntimeconfig.cache
