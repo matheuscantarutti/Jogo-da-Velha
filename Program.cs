@@ -4,40 +4,6 @@ namespace jogoDaVelha
 {
     class Program
     {
-        static char[] ordemEMarcador (char[] vet)
-        {
-            char jogador1, jogador2;
-
-            Console.WriteLine("Par ou impar para decidir a ordem de jogada!");
-            
-            Console.Write("Jogador 1, escolha, x ou o: ");
-            jogador1 = Convert.ToChar(Console.ReadLine());
-
-            while(jogador1 != 'x' && jogador1 != 'o')
-            {
-                Console.Write("Jogador 1, escolha, x ou o: ");
-                jogador1 = Convert.ToChar(Console.ReadLine());
-            }
-
-            if(jogador1 == 'x')
-            {
-                jogador2 = 'o';
-
-                Console.WriteLine("Jogador 1 marca {0} e Jogador 2 marca {1}", jogador1, jogador2);
-            }
-            else
-            {
-                jogador2 = 'x';
-                Console.WriteLine("Jogador 1 marca {0} e Jogador 2 marca {1}", jogador1, jogador2);
-            }
-
-            vet[0] = jogador1;
-            vet[1] = jogador2;
-
-            Console.WriteLine();
-
-            return vet;
-        }
         static char[,] limpaTabuleiro (char[,] mat)
         {
             for (int i = 0; i < mat.GetLength(0); i++)
@@ -50,6 +16,7 @@ namespace jogoDaVelha
 
             return mat;
         }
+
         static void imprimiTabuleiro (char[,] mat)
         {
             Console.WriteLine("      0      1      2");
@@ -67,65 +34,150 @@ namespace jogoDaVelha
                        Console.WriteLine();
                    }
                 }
-                
             }
-            
         }
+
         static char[,] jogada (char[,] mat, char[] vet)
         {   
-            int linha = 0, coluna = 0;
+            int j = 0, linha = 0, coluna = 0;
             for (int i = 0; i < mat.Length; i++)
             {
-                for (int j = 0; j < vet.Length; j++)
+                for (j = 0; j < vet.Length; j++)
                 {
                     Console.WriteLine("\nJogador {0}", j+1);
                     Console.Write("\nLinha: ");
                     linha = Convert.ToInt32(Console.ReadLine());
                     Console.Write("Coluna: ");
                     coluna = Convert.ToInt32(Console.ReadLine());
-
-                    mat[linha, coluna] = vet[j];
-                    imprimiTabuleiro(mat);
-                    juiz(mat);
-                }
-
-
-                
-            }
-
-            return mat;
-           
-        }
-        static void juiz (char[,] mat)
-        {
-            int o = 0, x = 0;
-
-            for (int i = 0; i < mat.GetLength(0); i++)
-            {
-                for (int j = 0; j < mat.GetLength(1); j++)
-                {
-                    if(mat[i,j] == 'x')
+                    
+                    if(mat[linha, coluna] !=' ')
                     {
-                        x++;
+                        Console.WriteLine("Espaço marcado, faça outra jogada");
+                        j--;
+                    }
+                    else if(linha < 0 || linha > 2)
+                    {
+                        Console.WriteLine("Linha inválida, faça outra jogada");
+                        j--;
+                    }
+                    else if((coluna < 0 || coluna > 2))
+                    {
+                        Console.WriteLine("Coluna inválida, faça outra jogada");
+                        j--;
                     }
                     else
                     {
-                        o++;
+                        mat[linha, coluna] = vet[j];
                     }
+
+                    if(i >= 2)
+                    {
+                        juiz(mat, vet);
+                    }
+
+                    if(vet[j] == 'v')
+                    {
+                        imprimiTabuleiro(mat);
+                        Console.WriteLine("Parabéns, o Jogador {0} venceu!", j+1);
+                        return mat;
+                    }
+                    
+                    if(vet[j] == 'e')
+                    {
+                        imprimiTabuleiro(mat);
+                        Console.WriteLine("Deu Velha!!");
+                        return mat;
+                    }
+
+                     imprimiTabuleiro(mat);
+                }                         
+            }
+
+            return mat;     
+        }
+
+        static char[] juiz (char[,] mat, char[] vet)
+        {
+            for (int i = 0; i < mat.GetLength(0); i++)
+            {
+                for(int j = 0; j < vet.Length; j++)
+                {
+                    if(mat[i, 0] == mat[i,1] && mat[i, 0] == mat[i,2] && mat[i,0] == vet[j])
+                    {
+                        vet[j] = 'v';
+                        return vet;
+                    }
+                }       
+            }   
+            
+            for (int i = 0; i < mat.GetLength(1); i++)
+            {
+                for(int j = 0; j < vet.Length; j++)
+                {
+                    if(mat[0,i] == mat[1,i] && mat[0,i] == mat[2,i] && mat[0,i] == vet[j])
+                    {
+                        vet[j] = 'v';
+                        return vet;
+                    }
+                }       
+            }   
+
+            if(mat[0,0] == mat[1,1] && mat[0,0] == mat[2,2])
+            {
+                for (int i = 0; i < vet.Length; i++)
+                {
+                    if(mat[0,0] == vet[i])
+                    {
+                        vet[i] = 'v';
+                        return vet;
+                    }    
                 }
             }
 
-            
-            
+            if(mat[0,2] == mat[1,1] && mat[0,2] == mat[2,0])
+            {
+                for (int i = 0; i < vet.Length; i++)
+                {
+                    if(mat[0,2] == vet[i])
+                    {
+                        vet[i] = 'v';
+                        return vet;
+                    }
+                }
+                
+            }
+
+            int contador = 0;
+            for (int i = 0; i < mat.GetLength(0); i++)
+            {
+                for(int j = 0; j < mat.GetLength(1); j++)
+                {
+                    if(mat[i,j] != ' ')  
+                    {
+                        contador++;
+                        if(contador == 9)
+                        {
+                            vet[0] = 'e';
+                            vet[1] = 'e';
+                            return vet;
+                        }
+                    }
+                }    
+            }
+            return vet;        
         }
+        
         static void Main(string[] args)
         {
-
-            char[] jogadores = new char[2];
+            char jogador1 ='x', jogador2 = 'o';
+            char[] jogadores = new char[]{jogador1, jogador2};
             char[,] tabuleiro = new char[3,3];
 
-            ordemEMarcador(jogadores);
-            
+            Console.WriteLine();
+            Console.WriteLine("Par ou impar para decidir a ordem de jogada!");
+            Console.WriteLine("Jogador 1 marca x\n Jogador 2 marca o");
+            Console.WriteLine();
+
             limpaTabuleiro(tabuleiro);
 
             imprimiTabuleiro(tabuleiro);
